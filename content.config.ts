@@ -1,10 +1,11 @@
 import { defineContentConfig, defineCollection, z, property } from '@nuxt/content'
+import { asSitemapCollection } from '@nuxtjs/sitemap/content'
 
 const exclude = ['README.md']
 
 export default defineContentConfig({
   collections: {
-    blogArticles: defineCollection({
+    blogArticles: defineCollection(asSitemapCollection({
       type: 'page',
       source: {
         include: 'blog-articles/**',
@@ -21,9 +22,9 @@ export default defineContentConfig({
         authors: z.array(z.string()).optional(),
         redirect_from: z.array(z.string()).optional(),
       }).passthrough()
-    }),
+    })),
 
-    blogCategories: defineCollection({
+    blogCategories: defineCollection(asSitemapCollection({
       type: 'page',
       source: {
         include: 'blog-categories/**',
@@ -34,9 +35,9 @@ export default defineContentConfig({
         seo: property(z.any().optional()).editor({ hidden: true }),
         navigation: property(z.any().optional()).editor({ hidden: true }),
       }),
-    }),
+    })),
 
-    communities: defineCollection({
+    communities: defineCollection(asSitemapCollection({
       type: 'page',
       source: {
         include: 'communities/**',
@@ -62,9 +63,9 @@ export default defineContentConfig({
         })).optional(),
         btcmap_community_id: z.string().optional(),
       }),
-    }),
+    })),
 
-    pages: defineCollection({
+    pages: defineCollection(asSitemapCollection({
       type: 'page',
       source: {
         include: 'pages/**',
@@ -75,7 +76,7 @@ export default defineContentConfig({
         seo: property(z.any().optional()).editor({ hidden: true }),
         navigation: property(z.any().optional()).editor({ hidden: true }),
       }),
-    }),
+    })),
 
     people: defineCollection({
       type: 'page',
