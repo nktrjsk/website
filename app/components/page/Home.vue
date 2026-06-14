@@ -70,7 +70,9 @@ const { data: blogArticles } = await useDataBlogArticles(props.articleLimit ?? 8
             :key="article.path"
             :title="article.title"
             :description="article.description"
-            :image="article.thumbnail || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAD0lEQVR4AQEEAPv/AMzMzATMAmVMDHrmAAAAAElFTkSuQmCC'"
+            :image="article.thumbnail
+              ? { src: article.thumbnail, sizes: '100vw sm:50vw lg:400px', width: 600, height: 338, format: 'webp', loading: 'lazy' }
+              : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAD0lEQVR4AQEEAPv/AMzMzATMAmVMDHrmAAAAAElFTkSuQmCC'"
             :date="article.published"
             :to="article.path"
             orientation="vertical"
